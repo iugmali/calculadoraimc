@@ -27,7 +27,7 @@ function App() {
       return
     }
     const enteredImc = weight / (height * height)
-    const finalImc = parseFloat(enteredImc.toFixed(1))
+    const finalImc = parseFloat(enteredImc.toFixed(2))
     if (finalImc < 18.5) {
       setImcRating('Peso abaixo do normal')
     } else if (finalImc < 25) {
@@ -107,8 +107,10 @@ function App() {
             <Text style={styles.buttonText}>Calcular IMC</Text>
           </TouchableOpacity>
         </View>
-        <Text style={styles.saldo}>IMC: {imc}</Text>
-        <Text style={styles.saldo}>{imcRating}</Text>
+        <View style={styles.imcContainer}>
+          <Text style={styles.saldo}>{imc > 0 ? `IMC: ${imc}` : ''}</Text>
+          <Text style={styles.saldo}>{imcRating}</Text>
+        </View>
       </View>
     </SafeAreaView>
   )
@@ -133,9 +135,13 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     padding: 8,
   },
+  imcContainer: {
+    marginTop: 16,
+
+  },
   saldo: {
     color: 'white',
-    fontSize: 32,
+    fontSize: 24,
     textAlign: 'center',
   },
   inputContainer: {
@@ -163,6 +169,11 @@ const styles = StyleSheet.create({
   button: {
     justifyContent: 'center',
     height: 40,
+    backgroundColor: '#200c3a',
+    borderColor: 'white',
+    borderWidth: 1,
+    padding: 8,
+    borderRadius: 4,
   },
   buttonText: {
     color: 'white',
